@@ -1,0 +1,23 @@
+{
+    "name": "Holyflix",
+    "description": "Netflix with a Christian flavour",
+    "version": "1.0",
+    "manifest_version": 3,
+    "content_scripts": [
+        {
+            "matches": [ "*://*.netflix.com/*" ],
+            "js": [ "init.js" ],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+          "matches": ["*://*.netflix.com/*"],
+          "resources": ["injected.js"]
+        }
+    ],
+    "action": {
+        "default_popup": "hello.html",
+        "default_icon": "default_icon.png"
+    }
+}
