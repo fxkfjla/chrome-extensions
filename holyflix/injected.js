@@ -58,6 +58,21 @@ const cloneControls = (controls) => {
     const pause = clone.querySelector('[data-uia="control-play-pause-pause"]');
     pause.addEventListener('click', handlePlay);
 
+    const back = clone.querySelector('[data-uia="control-nav-back"]');
+    back.addEventListener('click', () => window.location.replace("https://netflix.com/browse"));
+
+    const volumeControl = clone.querySelector('[data-uia^="control-volume"]');
+    volumeControl.addEventListener('click', () => video.muted = !video.muted);
+
+    const fullscreenControl = clone.querySelector('[data-uia^="control-fullscreen"]');
+    fullscreenControl.addEventListener('click', () => {
+        if(!document.fullscreenElement) {
+            video.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    });
+
     let hideTimeout;
 
     const startInactivityTimer = () => {
@@ -73,7 +88,6 @@ const cloneControls = (controls) => {
         clone.style.pointerEvents = 'auto';
         startInactivityTimer();
     };
-
 
     startInactivityTimer();
     document.addEventListener('mousemove', handleControls);
